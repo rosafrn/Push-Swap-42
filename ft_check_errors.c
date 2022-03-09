@@ -4,7 +4,7 @@
 int ft_check_integer(char *argv);
 int ft_check_duplicate(char **argv, int i);
 
-int main(int argc, char **argv)
+int ft_check_errors(int argc, char **argv)
 {
     int i;
 
@@ -13,12 +13,10 @@ int main(int argc, char **argv)
     {
         if (ft_check_integer(argv[i]) == 0 || ft_check_duplicate(argv, i) == 0)
         {
-            printf("error\n");
             return (0);
         }
         i++;
     }
-    printf("ok\n");
     return (1);
 }
 
