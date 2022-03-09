@@ -14,7 +14,7 @@ typedef struct node
 
 int ft_check_errors(int argc, char **argv);
 int ft_check_integer(char *argv);
-int ft_check_duplicate(char *argv, int i);
+int ft_check_duplicate(char **argv, int i);
 node *ft_create_node(char *argv);
 node *ft_create_list(int argc, char **argv);
 

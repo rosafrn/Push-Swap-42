@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "ft_push_swap.h"
 
 int ft_check_integer(char *argv);
 int ft_check_duplicate(char **argv, int i);
