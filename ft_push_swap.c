@@ -14,7 +14,25 @@ int main(int argc, char **argv)
         printf("Error\n");
         return (0);
     }
+
     list = ft_create_list(argc, argv);
+    // If there is not enough space to create the linked list
+    // return Error 
+    if (list == NULL)
+    {
+        printf("Error\n");
+        return (0);
+    }
+
+    ft_swap_one(&list, 's');
+
+    //printing the list to debug
+    while (list != NULL)
+    {
+        printf("%d\n", list->number);
+        list = list->next;
+    }
+
     //ft_sort_list(int argc, node *list);
     //return (1);
 }

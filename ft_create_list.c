@@ -1,26 +1,25 @@
 #include "ft_push_swap.h"
 
 node *ft_create_node(char *argv);
+void ft_free_list(node *head);
 
 node *ft_create_list(int argc, char **argv)
 {
     node *head;
     node *temporary;
 
-    head = NULL;
+    head = NULL; 
     while (argc > 1)
     {
         temporary = ft_create_node(argv[argc - 1]);
+        if (temporary == NULL)
+        {
+            ft_free_list(head);
+            return (NULL);
+        } 
         temporary->next = head;
         head = temporary;
         argc--;
-    }
-
-    //printing the list to debug
-    while (head != NULL)
-    {
-        printf("%d\n", head->number);
-        head = head->next;
     }
 }
 
@@ -35,3 +34,16 @@ node *ft_create_node(char *argv)
     n->next = NULL;
     return(n);
 }
+
+void ft_free_list(node *head)
+{
+    node *temporary;
+
+    while (head != NULL)
+    {
+        temporary = head->next;
+        free(head);
+        head = temporary;
+    }
+}
+
