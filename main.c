@@ -27,7 +27,7 @@ int main(int argc, char **argv)
         return (0);
     }
 
-    pb(stack);
+    rrb(stack);
 
     //ft_sort_list(int argc, node *list);
 
