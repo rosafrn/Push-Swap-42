@@ -1,4 +1,4 @@
-#include "ft_push_swap.h"
+#include "push_swap.h"
 
 node *create_node(char *argv);
 void free_list(node *head);
