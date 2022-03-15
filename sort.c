@@ -6,11 +6,16 @@
 /*   By: rosferna <rosferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 15:52:42 by rosferna          #+#    #+#             */
-/*   Updated: 2022/03/15 20:50:28 by rosferna         ###   ########.fr       */
+/*   Updated: 2022/03/15 20:54:08 by rosferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int check_order_a(node **head);
+node *get_last(node **head);
+void get_max(node **head);
+void get_min(node **head);
 
 void sort(node **stacks)
 {
