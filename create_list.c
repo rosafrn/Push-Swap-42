@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_list.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rosferna <rosferna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/15 15:52:20 by rosferna          #+#    #+#             */
+/*   Updated: 2022/03/15 15:52:20 by rosferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 node *create_node(char *argv);
@@ -21,6 +33,7 @@ node *create_list(int argc, char **argv)
         head = temporary;
         argc--;
     }
+    return (head);
 }
 
 node *create_node(char *argv)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_rotate.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rosferna <rosferna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/15 15:52:36 by rosferna          #+#    #+#             */
+/*   Updated: 2022/03/15 15:52:37 by rosferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 // ROTATE MOVES
@@ -14,7 +26,7 @@ void rotate(node **head)
     node *tmp1;
     node *tmp2;
 
-    if ((*head)->next == NULL)
+    if (*head == NULL || (*head)->next == NULL)
         return ;
     tmp1 = *head;
     *head = (*head)->next;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_swap.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rosferna <rosferna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/15 15:52:38 by rosferna          #+#    #+#             */
+/*   Updated: 2022/03/15 15:52:39 by rosferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 // SWAP MOVES
@@ -14,7 +26,7 @@ void swap(node **head)
     node *tmp;
 
     // Only swap if there's more than one element on the list
-    if ((*head)->next == NULL)
+    if (*head == NULL || (*head)->next == NULL)
         return ;
     // Swap moves
     tmp = *head;
