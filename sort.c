@@ -19,16 +19,12 @@ void get_min(node **head);
 
 void sort(node **stacks)
 {
-    int i;
-    node *a;
-    node *b;
     node *last_a;
     
-    a = stacks[0];
-    b = stacks[1];
-    
-    while (check_order_a(&stacks[0]) != 1)
+    get_order(&stacks[0]);
+    /*while (check_order_a(&stacks[0]) != 1)
     {
+        
         last_a = get_last(&stacks[0]);
         
         if (a == NULL || a->next == NULL)
@@ -54,8 +50,9 @@ void sort(node **stacks)
             continue;
         }
         //else if (a->number <)
+        }*/
         
-    }
+    
 }
 
 
@@ -92,9 +89,14 @@ void get_max(node **head)
     node *tmp;
     node *max;
 
+    if (*head == NULL)
+    {
+        printf("alguma vez\n");
+        return ;
+    }
     tmp = *head;
-    max->number = tmp->number;
-    while (tmp->next != NULL)
+    max = *head;
+    while (tmp != NULL)
     {
         if (tmp->number > max->number)
         {
@@ -110,9 +112,11 @@ void get_min(node **head)
     node *tmp;
     node * min;
 
+    if (*head == NULL)
+        return ;
     tmp = *head;
-    min->number = tmp->number;
-    while (tmp->next != NULL)
+    min = *head;
+    while (tmp != NULL)
     {
         if (tmp->number < min->number)
         {
@@ -121,6 +125,30 @@ void get_min(node **head)
         tmp = tmp->next;
     }
     min->min = 1;
+}
+
+void get_order(node **head)
+{
+    node *tmp;
+    node *min;
+    int previous_min = -2147483648;
+    int i = 1;
+
+    tmp = *head;
+    min = *head;
+    while (tmp != NULL)
+    {
+        if (tmp->number < min->number && tmp->number > previous_min)
+        {
+            min = tmp;
+            min->order = i;
+            previous_min = min->number;
+            i++;
+            tmp = *head;
+            continue ;
+        }
+        tmp = tmp->next;
+    }
 }
 
 /*se last < first 

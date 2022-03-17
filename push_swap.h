@@ -22,6 +22,7 @@ typedef struct node
     int number;
     int max;
     int min;
+    int order;
     struct node *next;
 } node;
 
@@ -57,6 +58,7 @@ int check_order_a(node **head);
 node *get_last(node **head);
 void get_max(node **head);
 void get_min(node **head);
+void get_order(node **head);
 
 
 

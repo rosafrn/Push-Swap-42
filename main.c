@@ -39,21 +39,21 @@ int main(int argc, char **argv)
         return (0);
     }
 
-    sort(&stacks);
+    sort(stacks);
 
      // PRINT TO DEDUG
     printf("    STACK a\n");
     temporary = stacks[0];
     while (temporary != NULL)
     {
-        printf("%d\n", temporary->number);
+        printf("number is :%d and order is this : %d\n", temporary->number, temporary->order);
         temporary = temporary->next;
     }
     printf("    STACK b\n");
     temporary = stacks[1];
     while (temporary != NULL)
     {
-        printf("%d\n", temporary->number);
+        printf("number is :%d and order is this : %d\n", temporary->number, temporary->order);
         temporary = temporary->next;
     }
 
