@@ -39,7 +39,7 @@ int main(int argc, char **argv)
         return (0);
     }
 
-    sort(stacks);
+    sort(stacks, argc);
 
      // PRINT TO DEDUG
     printf("    STACK a\n");

@@ -17,11 +17,11 @@ node *get_last(node **head);
 void get_max(node **head);
 void get_min(node **head);
 
-void sort(node **stacks)
+void sort(node **stacks, int argc)
 {
     node *last_a;
     
-    get_order(&stacks[0]);
+    get_order(&stacks[0], argc);
     /*while (check_order_a(&stacks[0]) != 1)
     {
         
@@ -127,29 +127,35 @@ void get_min(node **head)
     min->min = 1;
 }
 
-void get_order(node **head)
+void get_order(node **head, int argc)
 {
     node *tmp;
     node *min;
-    int previous_min = -2147483648;
     int i = 1;
-
-    tmp = *head;
-    min = *head;
-    while (tmp != NULL)
+    
+    while(i < argc)
     {
-        if (tmp->number < min->number && tmp->number > previous_min)
+        tmp = *head;
+        min = *head;
+        while (min != NULL && min->order != 0)
         {
-            min = tmp;
-            min->order = i;
-            previous_min = min->number;
-            i++;
-            tmp = *head;
-            continue ;
+            min = min->next;
         }
-        tmp = tmp->next;
+        while (tmp != NULL)
+        {
+            if (tmp->number < min->number && tmp->order == 0)
+            {
+                min = tmp;
+            }
+            tmp = tmp->next;
+        }
+        min->order = i;
+        i++;
     }
 }
+
+// TO SOLVE
+// se o menor numero for o primeiro, entao nao consegue encontrar os outros
 
 /*se last < first 
     rra;

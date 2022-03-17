@@ -53,12 +53,12 @@ void rra(node **stacks);
 void rrb(node **stacks);
 void rrr(node **stacks);
 
-void sort(node **stacks);
+void sort(node **stacks, int argc);
 int check_order_a(node **head);
 node *get_last(node **head);
 void get_max(node **head);
 void get_min(node **head);
-void get_order(node **head);
+void get_order(node **head, int argc);
 
 
 
