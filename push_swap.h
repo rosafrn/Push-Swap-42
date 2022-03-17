@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rosferna <rosferna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/15 15:52:40 by rosferna          #+#    #+#             */
+/*   Updated: 2022/03/15 15:52:40 by rosferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
@@ -39,6 +51,12 @@ void rerotate(node **head);
 void rra(node **stacks);
 void rrb(node **stacks);
 void rrr(node **stacks);
+
+void sort(node **stacks);
+int check_order_a(node **head);
+node *get_last(node **head);
+void get_max(node **head);
+void get_min(node **head);
 
 
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_rerotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rosferna <rosferna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/15 15:52:33 by rosferna          #+#    #+#             */
+/*   Updated: 2022/03/15 15:52:34 by rosferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 // REVERSE ROTATE
@@ -14,7 +26,7 @@ void rerotate(node **head)
     node *tmp1;
     node *tmp2;
 
-    if ((*head)->next == NULL)
+    if (*head == NULL || (*head)->next == NULL)
         return ;
     tmp1 = *head;
     while (tmp1->next->next != NULL)
