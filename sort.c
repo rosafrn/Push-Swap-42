@@ -12,22 +12,24 @@
 
 #include "push_swap.h"
 
-int check_order_a(node **head);
-int check_order_b(node **head);
+int check_order_a(node **head, int argc);
+int check_order_b(node **head, int argc);
 node *get_last(node **head);
 void get_max(node **head);
 void get_min(node **head);
 void get_order(node **head, int argc);
 
-void sort(node **stacks, int argc)
+/*void sort(node **stacks, int argc)
 {
     node *last_a;
 
-    get_order(&stacks[0], argc);
-    get_order(&stacks[1], argc);
+    //get_order(&stacks[0], argc);
+    //get_order(&stacks[1], argc);
     get_max(&stacks[0]);
     get_min(&stacks[0]);
 
+    eval_cost(&stacks[0], argc);
+    
     while (check_order_a(&stacks[0]) != 1)
     {
         last_a = get_last(&stacks[0]);
@@ -69,6 +71,8 @@ void sort(node **stacks, int argc)
             continue ;   
         }
 
+        
+
         // ANOTHER SERIES
         
 
@@ -88,36 +92,42 @@ void sort(node **stacks, int argc)
         }
         
     
-}
+}*/
 
 
-int check_order_a(node **head)
+int check_order_a(node **head, int count)
 {
     node *tmp;
+    int i;
     
     tmp = *head;
+    i = 1;
     if (tmp == NULL || tmp->next == NULL)
         return (1);
     while (tmp->number < tmp->next->number)
     {
         tmp = tmp->next;
-        if (tmp->next == NULL)
+        i++;
+        if (tmp->next == NULL || i == count)
             return (1);
     }
     return (0);
 }
 
-int check_order_b(node **head)
+int check_order_b(node **head, int argc)
 {
     node *tmp;
+    int i;
 
+    i = 1;
     tmp = *head;
     if (tmp == NULL || tmp->next == NULL)
         return (1);
     while (tmp->number > tmp->next->number)
     {
         tmp = tmp->next;
-        if (tmp->next == NULL)
+        i++;
+        if (tmp->next == NULL || i == argc)
             return (1);
     }
     return (0);
@@ -143,7 +153,6 @@ void get_max(node **head)
 
     if (*head == NULL)
     {
-        printf("alguma vez\n");
         return ;
     }
     tmp = *head;
@@ -206,6 +215,36 @@ void get_order(node **head, int argc)
         min->order = i;
         i++;
     }
+}
+
+// 1 : easy
+//-1 : dificul
+int eval_cost(node **head, int argc)
+{
+    node *tmp;
+    int i;
+
+    i = 1;
+    tmp = *head;
+    if (tmp == NULL || tmp->next == NULL)
+        return (1);
+    while (tmp->next != NULL)
+    {
+        if ((tmp->order + 1) == tmp->next->order)
+            i++;
+        tmp = tmp->next;
+    }
+    //printf("numer of order is: %d\n", i);
+    return (i);
+    /*if (i >= (argc/2))
+    {
+        return ();
+    }
+    if (i < (argc/2))
+    {
+        return (-1);
+    }*/
+
 }
 
 // TO SOLVE
