@@ -1,259 +1,60 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rosferna <rosferna@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 15:52:42 by rosferna          #+#    #+#             */
-/*   Updated: 2022/03/15 20:54:08 by rosferna         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-int check_order_a(node **head, int argc);
-int check_order_b(node **head, int argc);
-node *get_last(node **head);
-void get_max(node **head);
-void get_min(node **head);
-void get_order(node **head, int argc);
-
-/*void sort(node **stacks, int argc)
+void sort(node **stacks, int argc)
 {
-    node *last_a;
-
-    //get_order(&stacks[0], argc);
-    //get_order(&stacks[1], argc);
-    get_max(&stacks[0]);
-    get_min(&stacks[0]);
-
-    eval_cost(&stacks[0], argc);
-    
-    while (check_order_a(&stacks[0]) != 1)
-    {
-        last_a = get_last(&stacks[0]);
-
-        // 2 1 3
-        if ((stacks[0]->order - 1) == stacks[0]->next->order && stacks[0]->order < last_a->order)
-        {
-            sa(stacks);
-            continue ;
-        }
-
-        // 1 3 2
-        else if ((stacks[0]->order + 1) == last_a->order && last_a->order == (stacks[0]->next->order - 1))
-        {
-            sa(stacks);
-            ra(stacks);
-            continue ;
-        }
-
-        // 2 3 1
-        else if (stacks[0]->order == (last_a->order + 1) && stacks[0]->order < stacks[0]->next->order)
-        {
-            rra(stacks);
-            continue ;
-        }
-
-        // 3 2 1
-        else if (stacks[0]->order == (last_a->order + 1) && check_order_a(&stacks[0]->next) == 1)
-        {
-            ra(stacks);
-            continue ;
-        }
-
-        // 3 2 1
-        else if (stacks[0]->order == (stacks[0]->next->order + 1) && (stacks[0]->next->order == last_a->order + 1))
-        {
-            sa(stacks);
-            rra(stacks);
-            continue ;   
-        }
-
-        
-
-        // ANOTHER SERIES
-        
-
-
-
-        // printf("last is %d\n", last_a->order);
-        // printf("first is %d\n", stacks[0]->order);
-
-
-        // else if (stacks[0]->number < stacks[0]->next->number)
-        // {
-        //     pb(stacks);
-        //     pb(stacks);
-        //     continue;
-        // }
-        //else if (a->number <)
-        }
-        
-    
-}*/
-
-
-int check_order_a(node **head, int count)
-{
-    node *tmp;
     int i;
-    
-    tmp = *head;
-    i = 1;
-    if (tmp == NULL || tmp->next == NULL)
-        return (1);
-    while (tmp->number < tmp->next->number)
-    {
-        tmp = tmp->next;
-        i++;
-        if (tmp->next == NULL || i == count)
-            return (1);
-    }
-    return (0);
-}
-
-int check_order_b(node **head, int argc)
-{
-    node *tmp;
-    int i;
+    int x;
 
     i = 1;
-    tmp = *head;
-    if (tmp == NULL || tmp->next == NULL)
-        return (1);
-    while (tmp->number > tmp->next->number)
+    while (stacks[0] != NULL)
     {
-        tmp = tmp->next;
-        i++;
-        if (tmp->next == NULL || i == argc)
-            return (1);
-    }
-    return (0);
-    
-}
-
-node *get_last(node **head)
-{
-    node *tmp;
-    
-    tmp = *head;
-    while(tmp->next != NULL)
-    {
-        tmp = tmp->next;
-    }
-    return (tmp);
-}
-
-void get_max(node **head)
-{
-    node *tmp;
-    node *max;
-
-    if (*head == NULL)
-    {
-        return ;
-    }
-    tmp = *head;
-    max = *head;
-    while (tmp != NULL)
-    {
-        if (tmp->number > max->number)
+        x = where2go(stacks, i, argc);
+        if (x == 0)
         {
-            max = tmp;
+            while (stacks[0]->order != i)   
+                rra(stacks);
+            if (i == 1 && check_order_a(stacks, argc) == 1)
+                return ;
+            pb(stacks);
         }
-        tmp = tmp->next;
-    }
-    max->max = 1;
-}
-
-void get_min(node **head)
-{
-    node *tmp;
-    node * min;
-
-    if (*head == NULL)
-        return ;
-    tmp = *head;
-    min = *head;
-    while (tmp != NULL)
-    {
-        if (tmp->number < min->number)
+        else if (x == 1)
         {
-            min = tmp;
+            while (stacks[0]->order != i)
+                ra(stacks);
+            if (i == 1 && check_order_a(stacks, argc) == 1)
+                return ;
+            pb(stacks);
         }
-        tmp = tmp->next;
-    }
-    min->min = 1;
-}
-
-void get_order(node **head, int argc)
-{
-    node *tmp;
-    node *min;
-    int i = 1;
-    
-    if (*head == NULL)
-        return ;
-    while(i < argc)
-    {
-        tmp = *head;
-        min = *head;
-        while (min != NULL && min->order != 0)
-        {
-            min = min->next;
-        }
-        while (tmp != NULL)
-        {
-            if (tmp->number < min->number && tmp->order == 0)
-            {
-                min = tmp;
-            }
-            tmp = tmp->next;
-        }
-        min->order = i;
         i++;
     }
+
+    while (stacks[1] != NULL)
+    {
+        pa(stacks);
+    }
 }
 
-// 1 : easy
-//-1 : dificul
-int eval_cost(node **head, int argc)
+int where2go(node **stacks, int i, int argc)
 {
-    node *tmp;
-    int i;
+    int x;
+    node *temp;
 
-    i = 1;
-    tmp = *head;
-    if (tmp == NULL || tmp->next == NULL)
+    x = 1;
+    temp = stacks[0];
+    while (temp != NULL)
+    {
+        if (temp->order == i)
+            break;
+        temp = temp->next;
+        x++;
+    }
+
+    if (x > (argc/2))
+    {
+        return(0);
+    }
+    if (x <= (argc/2))
+    {
         return (1);
-    while (tmp->next != NULL)
-    {
-        if ((tmp->order + 1) == tmp->next->order)
-            i++;
-        tmp = tmp->next;
     }
-    //printf("numer of order is: %d\n", i);
-    return (i);
-    /*if (i >= (argc/2))
-    {
-        return ();
-    }
-    if (i < (argc/2))
-    {
-        return (-1);
-    }*/
-
 }
-
-// TO SOLVE
-// se o menor numero for o primeiro, entao nao consegue encontrar os outros
-
-/*se last < first 
-    rra;
-se first > second 
-    pb;
-*first < first && *first > last 
-    pa;
-    rra;*/

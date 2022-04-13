@@ -53,27 +53,29 @@ void rra(node **stacks);
 void rrb(node **stacks);
 void rrr(node **stacks);
 
-void sort(node **stacks, int argc);
 int check_order_a(node **head, int argc);
 int check_order_b(node **head, int argc);
 node *get_last(node **head);
 void get_max(node **head);
 void get_min(node **head);
 void get_order(node **head, int argc);
-int eval_cost(node **head, int argc);
-void sort1(node **stacks, int argc);
+
+void sort(node **stacks, int argc);
+int where2go(node **stacks, int i, int argc);
+
 int count_list(node **head);
 void merge1(node **stacks, int size_of_sorted);
 void position1(node **stacks);
 void merge2(node **stacks, int size_of_sorted);
 void position2(node **stacks);
-
 void check3(node **stacks, int argc);
 int check3_1(node **stacks, int argc);
 void check3_last(node **stacks);
 void check3_first(node **stacks);
 void check3_middle(node **stacks);
 void last_merge(node **stacks, int i);
+
+int where2go(node **stacks, int i, int argc);
 
 #endif
 
