@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void sort1(node **stacks, int argc)
+/*void sort1(node **stacks, int argc)
 {
     int i;
     int flag = 0;
@@ -93,8 +93,7 @@ int check3_1(node **stacks, int argc)
                     return (-1);
             }
     }
-    else
-        return (0);
+    return (0);
 }
 
 void check3_last(node **stacks)
@@ -188,21 +187,6 @@ void last_merge(node **stacks, int i)
 }
 
 
-int count_list(node **head)
-{
-    int i;
-    node *tmp;
-
-    i = 0;
-    tmp = *head;
-    while (tmp != NULL)
-    {
-       tmp = tmp->next;
-       i++; 
-    }
-    return (i);
-}
-
 //esta funcao passa o nr menor
 void merge1(node **stacks, int size_of_sorted)
 {
@@ -277,4 +261,4 @@ void position2(node **stacks)
     ra(stacks);
     if (stacks[0]->order < stacks[0]->next->order)
         sa(stacks);
-}
+}*/

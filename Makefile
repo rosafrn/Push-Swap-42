@@ -1,35 +1,37 @@
-NAME = push_swap
+CC		=	gcc
+CFLAGS	=	-Wall -Wextra -Werror
+RM		=	rm -f
 
-HEADER = push_swap.h
+NAME	=	push_swap
 
-SRCS = $(wildcard main/*.c)\
-		$(wildcard 3argc/*.c)\
-		$(wildcard check_errors/*.c)\
-		$(wildcard create_list/*.c)\
-		$(wildcard moves_push/*.c)\
-		$(wildcard moves_rerotate/*.c)\
-		$(wildcard moves_rotate/*.c)\
-		$(wildcard moves_swap/*.c)\
-		$(wildcard probably_delete/*.c)\
-		$(wildcard sort/*.c)\
-		$(wildcard utils/*.c)
+HEADER	=	push_swap.h
+
+SRCS = main.c\
+		3argc.c\
+		check_errors.c\
+		create_list.c\
+		moves_push.c\
+		moves_rerotate.c\
+		moves_rotate.c\
+		moves_swap.c\
+		sort.c\
+		utils.c
 
 OBJS = $(SRCS:.c=.o)
 
-CC		:=	gcc
-CFLAGS	:= -Wall -Wextra -Werror 
-
-all: $(NAME)
-
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
-	mv $(OBJS) Objs
+	ar rcs $(NAME) $(OBJS)
 
-san: fclean $(OBJS)
-	$(CCS) $(OBJS) -g -o $(NAME)
-	mv $(OBJS) Objs
+push_swap: 
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean:
-	rm -f Objs/*.o
+	rm -rf $(OBJS)
+
+fclean: clean
+	 	$(RM) $(NAME)
+
+re: fclean all
+
 
 

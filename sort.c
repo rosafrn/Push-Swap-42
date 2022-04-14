@@ -9,6 +9,8 @@ void sort(node **stacks, int argc)
     while (stacks[0] != NULL)
     {
         x = where2go(stacks, i, argc);
+        //if (count_list(&stacks[0]) > 1 && stacks[0]->order == (stacks[0]->next->order + 1))
+        //    sa(stacks);
         if (x == 0)
         {
             while (stacks[0]->order != i)   
@@ -57,4 +59,5 @@ int where2go(node **stacks, int i, int argc)
     {
         return (1);
     }
+    return (-1);
 }

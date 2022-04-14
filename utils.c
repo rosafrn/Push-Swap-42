@@ -121,3 +121,18 @@ void get_order(node **head, int argc)
         i++;
     }
 }
+
+int count_list(node **head)
+{
+    int i;
+    node *tmp;
+
+    i = 0;
+    tmp = *head;
+    while (tmp != NULL)
+    {
+       tmp = tmp->next;
+       i++; 
+    }
+    return (i);
+}
