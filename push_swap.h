@@ -20,9 +20,10 @@
 typedef struct node
 {
     int number;
-    int max;
-    int min;
     int order;
+    int min;
+    int max;
+    struct node *prev;
     struct node *next;
 } node;
 
@@ -55,14 +56,19 @@ void rrr(node **stacks);
 
 int check_order_a(node **head, int argc);
 int check_order_b(node **head, int argc);
-node *get_last(node **head);
+node *last(node **head);
 void get_max(node **head);
 void get_min(node **head);
 void get_order(node **head, int argc);
 int count_list(node **head);
-
-void sort(node **stacks, int argc);
 int where2go(node **stacks, int i, int argc);
+int where2go2(node **stacks, int max, int min);
+int chunks(node **stacks, int min, int max);
+int create_chunks(node **stacks);
+
+void sort3(node **stacks);
+void sort5(node **stacks);
+void sort100(node **stacks);
 
 
 #endif

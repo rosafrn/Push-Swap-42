@@ -39,7 +39,7 @@ int check_order_b(node **head, int argc)
     
 }
 
-node *get_last(node **head)
+node *last(node **head)
 {
     node *tmp;
     
@@ -136,3 +136,62 @@ int count_list(node **head)
     }
     return (i);
 }
+
+int where2go(node **stacks, int i, int argc)
+{
+    int x;
+    node *temp;
+
+    x = 0;
+    temp = stacks[0];
+    while (temp != NULL)
+    {
+        if (temp->order == i)
+            break;
+        temp = temp->next;
+        x++;
+    }
+    if (x > (argc/2))
+        return (0);
+    else if (x <= (argc/2))
+        return (1);
+    return (-1);
+}
+
+int where2go2(node **stacks, int max, int min)
+{
+    int x;
+    int y;
+    node *temp;
+
+    x = 0;
+    y = 0;
+    temp = stacks[0];
+    while (temp != NULL)
+    {
+        if (temp->order >= min && temp->order <= max)
+            break;
+        temp = temp->next;
+        x++;
+    }
+    temp = last(&stacks[0]);
+    while (temp != stacks[0])
+    {
+        if (temp->order >= min && temp->order <= max)
+            break ;
+        temp = temp->prev;
+        y++;
+    }
+
+    if (x <= y)
+        return (1);
+    else if (x > y)
+        return (0);
+    return (-1);
+}
+
+/*void teste(node **stacks)
+{
+    node *temp;
+    temp = last(&stacks[0]);
+}*/

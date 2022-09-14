@@ -7,7 +7,6 @@ NAME	=	push_swap
 HEADER	=	push_swap.h
 
 SRCS = main.c\
-		3argc.c\
 		check_errors.c\
 		create_list.c\
 		moves_push.c\

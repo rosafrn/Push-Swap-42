@@ -15,7 +15,7 @@
 int main(int argc, char **argv)
 {
     node *stacks[2];
-    //node *temporary;
+    node *temporary;
 
     if (argc < 2)
     {
@@ -41,9 +41,10 @@ int main(int argc, char **argv)
 
     get_order(&stacks[0], argc);
 
-    sort(stacks, (argc -1));
+    //sort(stacks, (argc -1));
+    //sort100(stacks);
 
-    /* // PRINT TO DEDUG
+    // PRINT TO DEDUG
     printf("    STACK a\n");
     temporary = stacks[0];
     while (temporary != NULL)
@@ -57,7 +58,7 @@ int main(int argc, char **argv)
     {
         printf("number is :%d and order is: %d\n", temporary->number, temporary->order);
         temporary = temporary->next;
-    }*/
+    }
 
     //return (1);
 }

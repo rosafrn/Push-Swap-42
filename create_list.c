@@ -30,6 +30,9 @@ node *create_list(int argc, char **argv)
             return (NULL);
         } 
         temporary->next = head;
+        if (head != NULL)
+            head->prev = temporary;
+        head->prev = temporary;
         head = temporary;
         argc--;
     }
@@ -45,6 +48,7 @@ node *create_node(char *argv)
         return(NULL);
     n->number = atoi(argv);
     n->next = NULL;
+    n->prev = NULL;
     return(n);
 }
 
