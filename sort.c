@@ -51,16 +51,16 @@ void sort100(node **stacks)
             if (where2go(&stacks[1], i, 100) == 1)
             {
                 rb(stacks);
-                //x++;
+                x++;
             }
             else
             {
                 rrb(stacks);
-                //x++;
+                x++;
             }
         }
         pa(stacks);
-        //x++;
+        x++;
         i--;
     }
     printf ("AAAAAAAAAAAAAAA %d\n", x);
@@ -90,7 +90,7 @@ int chunks(node **stacks, int min, int max)
     {
         while (stacks[0]->order < min || stacks[0]->order > max)
         {
-            if (where2go2(&stacks[0], max, min) == 1)
+            if (where2go2(&stacks[0], max, min, 100) == 1)
             {
                 ra(stacks);
                 x++;

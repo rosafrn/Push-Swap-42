@@ -158,14 +158,14 @@ int where2go(node **stacks, int i, int argc)
     return (-1);
 }
 
-int where2go2(node **stacks, int max, int min)
+int where2go2(node **stacks, int max, int min, int argc)
 {
     int x;
-    int y;
+    //int y;
     node *temp;
 
     x = 0;
-    y = 0;
+    //y = 0;
     temp = stacks[0];
     while (temp != NULL)
     {
@@ -175,19 +175,24 @@ int where2go2(node **stacks, int max, int min)
         x++;
     }
     temp = last(&stacks[0]);
-    while (temp != stacks[0])
+
+    if (x > (argc/2))
+        return (0);
+    else if (x <= (argc/2))
+        return (1);
+    return (-1);
+    /*while (temp != stacks[0])
     {
         if (temp->order >= min && temp->order <= max)
             break ;
         temp = temp->prev;
         y++;
     }
-
     if (x <= y)
         return (1);
     else if (x > y)
         return (0);
-    return (-1);
+    return (-1);*/
 }
 
 /*void teste(node **stacks)

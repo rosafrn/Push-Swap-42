@@ -23,7 +23,6 @@ typedef struct node
     int order;
     int min;
     int max;
-    struct node *prev;
     struct node *next;
 } node;
 
@@ -62,7 +61,7 @@ void get_min(node **head);
 void get_order(node **head, int argc);
 int count_list(node **head);
 int where2go(node **stacks, int i, int argc);
-int where2go2(node **stacks, int max, int min);
+int where2go2(node **stacks, int max, int min, int argc);
 int chunks(node **stacks, int min, int max);
 int create_chunks(node **stacks);
 
