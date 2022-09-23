@@ -19,26 +19,6 @@ int check_order_a(node **head, int count)
     return (0);
 }
 
-int check_order_b(node **head, int argc)
-{
-    node *tmp;
-    int i;
-
-    i = 1;
-    tmp = *head;
-    if (tmp == NULL || tmp->next == NULL)
-        return (1);
-    while (tmp->number > tmp->next->number)
-    {
-        tmp = tmp->next;
-        i++;
-        if (tmp->next == NULL || i == argc)
-            return (1);
-    }
-    return (0);
-    
-}
-
 node *last(node **head)
 {
     node *tmp;
@@ -49,48 +29,6 @@ node *last(node **head)
         tmp = tmp->next;
     }
     return (tmp);
-}
-
-void get_max(node **head)
-{
-    node *tmp;
-    node *max;
-
-    if (*head == NULL)
-    {
-        return ;
-    }
-    tmp = *head;
-    max = *head;
-    while (tmp != NULL)
-    {
-        if (tmp->number > max->number)
-        {
-            max = tmp;
-        }
-        tmp = tmp->next;
-    }
-    max->max = 1;
-}
-
-void get_min(node **head)
-{
-    node *tmp;
-    node * min;
-
-    if (*head == NULL)
-        return ;
-    tmp = *head;
-    min = *head;
-    while (tmp != NULL)
-    {
-        if (tmp->number < min->number)
-        {
-            min = tmp;
-        }
-        tmp = tmp->next;
-    }
-    min->min = 1;
 }
 
 void get_order(node **head, int argc)
@@ -137,12 +75,14 @@ int count_list(node **head)
     return (i);
 }
 
-int where2go(node **stacks, int i, int argc)
+int where2go(node **stacks, int i)
 {
     int x;
+    int y;
     node *temp;
 
     x = 0;
+    y = count_list(&stacks[0]);
     temp = stacks[0];
     while (temp != NULL)
     {
@@ -151,21 +91,22 @@ int where2go(node **stacks, int i, int argc)
         temp = temp->next;
         x++;
     }
-    if (x > (argc/2))
+    if (x > (y/2))
         return (0);
-    else if (x <= (argc/2))
+    else if (x <= (y/2))
         return (1);
     return (-1);
 }
 
-int where2go2(node **stacks, int max, int min, int argc)
+int where2go2(node **stacks, int max, int min)
 {
     int x;
-    //int y;
+    int y;
     node *temp;
 
-    x = 0;
-    //y = 0;
+    x = 1;
+    y = 1;
+    //y = count_list(&stacks[0]);
     temp = stacks[0];
     while (temp != NULL)
     {
@@ -174,29 +115,47 @@ int where2go2(node **stacks, int max, int min, int argc)
         temp = temp->next;
         x++;
     }
-    temp = last(&stacks[0]);
-
-    if (x > (argc/2))
+    /*if (x > (y/2))
         return (0);
-    else if (x <= (argc/2))
+    else if (x <= (y/2))
         return (1);
-    return (-1);
-    /*while (temp != stacks[0])
-    {
-        if (temp->order >= min && temp->order <= max)
-            break ;
-        temp = temp->prev;
-        y++;
-    }
+    return (-1);*/
+    y = doubly(&stacks[0], min, max);
     if (x <= y)
         return (1);
     else if (x > y)
         return (0);
-    return (-1);*/
+    return (-1);
 }
 
-/*void teste(node **stacks)
+int doubly(node **stacks, int min, int max)
+{
+    int y;
+    int size;
+
+    y = 0;
+    size = count_list(&stacks[0]);
+    while (size > 0)
+    {
+        if ((is_it(&stacks[0], size))->order >= min && (is_it(&stacks[0], size))->order <= max)
+            break ;
+        y++;
+        size--;
+    }
+    return (y);
+}
+
+node *is_it(node **stacks, int size)
 {
     node *temp;
-    temp = last(&stacks[0]);
-}*/
+
+    temp = stacks[0];
+    while (size > 1)
+    {
+        if (temp->next == NULL)
+            break ;
+        temp = temp->next;
+        size--;
+    }
+    return (temp);
+}

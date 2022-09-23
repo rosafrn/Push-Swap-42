@@ -1,4 +1,19 @@
+
 #include "push_swap.h"
+
+void distribute(node **stacks, int argc)
+{
+    if (check_order_a(&stacks[0], argc) == 1)
+        return ;
+    
+    else if (argc == 3)
+        sort3(stacks);
+    else if (argc == 5)
+        sort5(stacks);
+    else
+        sort(stacks);
+    
+}
 
 void sort3(node **stacks)
 {
@@ -22,7 +37,7 @@ void sort5(node **stacks)
     {
         while (stacks[0]->order != i)
         {
-            if (where2go(&stacks[0], 1, 5) == 1)
+            if (where2go(&stacks[0], i) == 1)
                 ra(stacks);
             else
                 rra(stacks);
@@ -37,74 +52,77 @@ void sort5(node **stacks)
     pa(stacks);
 }
 
-void sort100(node **stacks)
+void sort(node **stacks)
 {
     int i;
-    int x;
 
-    i = 100;
-    x = create_chunks(stacks);
+    i = count_list(&stacks[0]);
+    if (i < 200)
+        create_chunks(stacks);
+    else
+        create_big_chunks(stacks);
     while (i > 0)
     {
         while (stacks[1]->order != i)
         {
-            if (where2go(&stacks[1], i, 100) == 1)
-            {
+            if (where2go(&stacks[1], i) == 1)
                 rb(stacks);
-                x++;
-            }
             else
-            {
                 rrb(stacks);
-                x++;
-            }
         }
         pa(stacks);
-        x++;
         i--;
     }
-    printf ("AAAAAAAAAAAAAAA %d\n", x);
-    
 }
 
-int create_chunks(node **stacks)
+void create_chunks(node **stacks)
 {
-    int i; 
+    int x;
+    int y;
 
-    i = 0;
-    i = chunks(stacks, 1, 25);
-    i = i + chunks(stacks, 26, 50);
-    i = i + chunks(stacks, 51, 75);
-    i = i + chunks(stacks, 76, 100);
-    return (i);
+    x = count_list(&stacks[0]);
+    y = x / 5;
+    chunks(stacks, 1, y, y);
+    chunks(stacks, (y + 1), (y + y), y);
+    chunks(stacks, (y + y + 1), (y + y + y), y);
+    chunks(stacks, (y + y + y + 1), (y + y + y + y), y);
+    chunks(stacks, (y + y + y + y + 1), x, (x - (y *4)));
 }
 
-int chunks(node **stacks, int min, int max)
+void create_big_chunks(node **stacks)
+{
+    int x;
+    int y;
+
+    x = count_list(&stacks[0]);
+    y = x / 10;
+    chunks(stacks, 1, y, y);
+    chunks(stacks, (y + 1), (y * 2), y);
+    chunks(stacks, (y * 2 + 1), (y * 3), y);
+    chunks(stacks, (y * 3 + 1), (y * 4), y);
+    chunks(stacks, (y * 4 + 1), (y * 5), y);
+    chunks(stacks, (y * 5 + 1), (y * 6), y);
+    chunks(stacks, (y * 6 + 1), (y * 7), y);
+    chunks(stacks, (y * 7 + 1), (y * 8), y);
+    chunks(stacks, (y * 8 + 1), (y * 9), y);
+    chunks(stacks, (y * 9 + 1), x, (x - (y * 9)));
+}
+
+void chunks(node **stacks, int min, int max, int chunk_size)
 {
     int i;
-    int x;
 
     i = 1;
-    x = 0;
-    while (i <= 25)
+    while (i <= chunk_size)
     {
         while (stacks[0]->order < min || stacks[0]->order > max)
         {
-            if (where2go2(&stacks[0], max, min, 100) == 1)
-            {
+            if (where2go2(&stacks[0], max, min) == 1)
                 ra(stacks);
-                x++;
-            }
             else
-            {
                 rra(stacks);
-                x++;
-            }
         }
         pb(stacks);
-        x++;
         i++;
     }
-    return(x);
 }
-

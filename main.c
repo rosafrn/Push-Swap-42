@@ -41,8 +41,7 @@ int main(int argc, char **argv)
 
     get_order(&stacks[0], argc);
 
-    //sort(stacks, (argc -1));
-    sort100(stacks);
+    distribute(stacks, (argc -1));
 
     // PRINT TO DEDUG
     printf("    STACK a\n");

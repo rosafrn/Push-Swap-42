@@ -54,21 +54,21 @@ void rrb(node **stacks);
 void rrr(node **stacks);
 
 int check_order_a(node **head, int argc);
-int check_order_b(node **head, int argc);
 node *last(node **head);
-void get_max(node **head);
-void get_min(node **head);
 void get_order(node **head, int argc);
 int count_list(node **head);
-int where2go(node **stacks, int i, int argc);
-int where2go2(node **stacks, int max, int min, int argc);
-int chunks(node **stacks, int min, int max);
-int create_chunks(node **stacks);
+int where2go(node **stacks, int i);
+int where2go2(node **stacks, int max, int min);
+int doubly(node **stacks, int min, int max);
+node *is_it(node **stacks, int size);
 
+void distribute(node **stacks, int argc);
 void sort3(node **stacks);
 void sort5(node **stacks);
-void sort100(node **stacks);
-
+void sort(node **stacks);
+void create_chunks(node **stacks);
+void create_big_chunks(node **stacks);
+void chunks(node **stacks, int min, int max, int chunk_size);
 
 #endif
 
