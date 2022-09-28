@@ -17,15 +17,18 @@ void distribute(node **stacks, int argc)
 
 void sort3(node **stacks)
 {
-        if (last(&stacks[0])->order > stacks[0]->order && last(&stacks[0])->order < stacks[0]->next->order)
+        while (check_order_a(&stacks[0], 3) != 1)
         {
-            rra(stacks);
-            sa(stacks);
+            if (last(&stacks[0])->order > stacks[0]->order && last(&stacks[0])->order < stacks[0]->next->order)
+            {
+                sa(stacks);
+                ra(stacks);
+            }
+            else if (stacks[0]->order > last(&stacks[0])->order)
+                ra(stacks);
+            else if (stacks[0]->order > stacks[0]->next->order)
+                sa(stacks);
         }
-        if (stacks[0]->order > last(&stacks[0])->order)
-            ra(stacks);
-        if (stacks[0]->order > stacks[0]->next->order)
-            sa(stacks);
 }
 
 void sort5(node **stacks)
